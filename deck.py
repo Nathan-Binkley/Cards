@@ -14,3 +14,9 @@ class deck(object):
         if jokers:
             self.deck.append("Joker")
             self.deck.append("Joker")
+
+    def __del__(self):
+        deck.clear()
+
+    def shuffle(self, deck):
+        D = deck[::]
