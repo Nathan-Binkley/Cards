@@ -18,7 +18,7 @@ class deck(object):
     def __del__(self):
         deck.clear()
 
-    def shuffle(self, deck):
+    def shuffle(self, deck = []):
         D = deck[::]
         temp = []
         D1 = D[len(D)/2:]
@@ -26,7 +26,6 @@ class deck(object):
         print("Deck 1: " + str(D1))
         print("Deck 2: " + str(D2))
         for i in D1:
-            for j in D2:
-                temp.append(i)
-                temp.append(j)
-        print("Combined: " + str(D))
+            temp.append(i)
+
+        print("Combined: " + str(temp))
