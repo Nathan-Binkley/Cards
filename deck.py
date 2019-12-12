@@ -1,13 +1,15 @@
+import random
 class deck(object):
     """Class for the creation of a deck and cards"""
 
     def __init__(self, jokers = False):
         self.deck = []
+        suits = ["Spades", "Hearts", "Clubs", "Diamonds"]
         for i in range(13):
-            self.deck.append(i+"S") # Spades
-            self.deck.append(i+"H") # Hearts
-            self.deck.append(i+"C") # Clubs
-            self.deck.append(i+"D") # Diamonds
+            self.deck.append(str(i)+"S") # Spades
+            self.deck.append(str(i)+"H") # Hearts
+            self.deck.append(str(i)+"C") # Clubs
+            self.deck.append(str(i)+"D") # Diamonds
             # 11 = Jack
             # 12 = Queen
             # 13 = King
@@ -16,16 +18,30 @@ class deck(object):
             self.deck.append("Joker")
 
     def __del__(self):
-        deck.clear()
+        self.deck.clear()
 
-    def shuffle(self, deck = []):
+    def shuffle(self, deck, evenShuffle=False):
         D = deck[::]
         temp = []
-        D1 = D[len(D)/2:]
-        D2 = D[:len(D)/2]
-        print("Deck 1: " + str(D1))
-        print("Deck 2: " + str(D2))
-        for i in D1:
-            temp.append(i)
+        if evenShuffle:
+            D1 = D[len(D)/2:]
+            D2 = D[:len(D)/2]
+            print("Deck 1: " + str(D1))
+            print("Deck 2: " + str(D2))
+            for i in range(len(D1)):
+                temp.append(D1[i])
+                temp.append(D2[i])
+        else:
+            value = random.randint(-10,10)
+            D1 = D[(len(D)/2)+value:]
+            D2 = D[:(len(D)/2)-value]
+            low = min(len(D1), len(D2))
+
+        
 
         print("Combined: " + str(temp))
+
+class card(object):
+    def __init__(self):
+        self.suit = None
+        self.number = None
