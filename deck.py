@@ -21,7 +21,7 @@ class deck(object):
         self.deck.clear()
 
     def shuffle(self, deck, evenShuffle=False):
-        D = deck[::]
+        D = deck[::] # Copy Deck
         temp = []
         if evenShuffle:
             D1 = D[len(D)/2:]
@@ -37,8 +37,15 @@ class deck(object):
             D2 = D[:(len(D)/2)-value]
             low = min(len(D1), len(D2))
 
-        
+            for i in range(low): #for every card, put bottom from each stack on the deck, alternating stacks until one is empty
+                temp.append(D1.pop(0))
+                temp.append(D2.pop(0))
 
+            while D1: #Handle remaining not accounted for in random selection appending them to the deck object
+                temp.append(D1.pop())
+            while D2:
+                temp.append(D2.pop())
+        deck = temp    # "in place" replacement    
         print("Combined: " + str(temp))
 
 class card(object):
