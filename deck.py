@@ -6,10 +6,13 @@ class deck(object):
         self.deck = []
         suits = ["Spades", "Hearts", "Clubs", "Diamonds"]
         for i in range(13):
-            self.deck.append(str(i)+"S") # Spades
-            self.deck.append(str(i)+"H") # Hearts
-            self.deck.append(str(i)+"C") # Clubs
-            self.deck.append(str(i)+"D") # Diamonds
+            H = card("Hearts", i)
+            S = card("Spades", i)
+            D = card("Dimonds", i)
+            C = card("Clubs", i)
+            self.deck.extend([H, S, D, C]) #Store cards in the deck as objects of type cards
+                                           #Updated from being a <number><SuitLetter> combination
+            
             # 11 = Jack
             # 12 = Queen
             # 13 = King
@@ -49,6 +52,6 @@ class deck(object):
         print("Combined: " + str(temp))
 
 class card(object):
-    def __init__(self):
+    def __init__(self, suit = None, number = None):
         self.suit = None
         self.number = None
